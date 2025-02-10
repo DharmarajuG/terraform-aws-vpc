@@ -63,7 +63,7 @@ resource "aws_subnet" "Database" {
     var.common_tags,
     var.database_subnets_tags,
     {
-        Name = "${locals.name}-database-${local.az_names[count.index]}"
+        Name = "${local.name}-database-${local.az_names[count.index]}"
     }
   )
 }
