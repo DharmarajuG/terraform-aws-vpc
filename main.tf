@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
     var.common_tags,
     var.vpc_tags,
     {
-        Name = locals.name
+        Name = local.name
     }
   )
 }
@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
     var.common_tags,
     var.igw_tags,
     {
-        Name = "${locals.name}-igw"
+        Name = "${local.name}-igw"
     }
   )
 }
@@ -33,7 +33,7 @@ resource "aws_subnet" "Public" {
     var.common_tags,
     var.public_subnets_tags,
     {
-        Name = "${locals.name}-public-${local.az_names[count.index]}"
+        Name = "${local.name}-public-${local.az_names[count.index]}"
     }
   )
 }
@@ -48,7 +48,7 @@ resource "aws_subnet" "Private" {
     var.common_tags,
     var.private_subnets_tags,
     {
-        Name = "${locals.name}-private-${local.az_names[count.index]}"
+        Name = "${local.name}-private-${local.az_names[count.index]}"
     }
   )
 }
@@ -63,7 +63,7 @@ resource "aws_subnet" "Database" {
     var.common_tags,
     var.database_subnets_tags,
     {
-        Name = "${locals.name}-database-${local.az_names[count.index]}"
+        Name = "${local.name}-database-${local.az_names[count.index]}"
     }
   )
 }
