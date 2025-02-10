@@ -33,7 +33,7 @@ resource "aws_subnet" "Public" {
     var.common_tags,
     var.public_subnets_tags,
     {
-        Name = "${locals.name}-public-${local.az_names[count.index]}"
+        Name = "${local.name}-public-${local.az_names[count.index]}"
     }
   )
 }
@@ -48,7 +48,7 @@ resource "aws_subnet" "Private" {
     var.common_tags,
     var.private_subnets_tags,
     {
-        Name = "${locals.name}-private-${local.az_names[count.index]}"
+        Name = "${local.name}-private-${local.az_names[count.index]}"
     }
   )
 }
