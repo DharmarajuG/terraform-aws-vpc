@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
     var.common_tags,
     var.vpc_tags,
     {
-        Name = locals.name
+        Name = local.name
     }
   )
 }
@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
     var.common_tags,
     var.igw_tags,
     {
-        Name = "${locals.name}-igw"
+        Name = "${local.name}-igw"
     }
   )
 }
