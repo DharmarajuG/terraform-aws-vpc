@@ -70,7 +70,7 @@ resource "aws_subnet" "database" {
 
 resource "aws_db_subnet_group" "default" {
   name = "${local.name}-dbsubnetgroup"
-  subnet_ids = aws_subnet.Database[*].id
+  subnet_ids = aws_subnet.database[*].id
 
   tags = {
     Name = "${local.name}-dbsubnetgroup"
@@ -83,7 +83,7 @@ resource "aws_eip" "eip" {
 
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.eip.id
-  subnet_id = aws_subnet.Public[0].id
+  subnet_id = aws_subnet.public[0].id
 
   tags = merge(
     var.common_tags,
