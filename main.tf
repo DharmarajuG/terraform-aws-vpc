@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "igw" {
   )
 }
 
-resource "aws_subnet" "Public" {
+resource "aws_subnet" "public" {
   count = length(var.public_subnets_cidr)
   vpc_id = aws_vpc.main.id
   cidr_block = var.public_subnets_cidr[count.index]
@@ -38,7 +38,7 @@ resource "aws_subnet" "Public" {
   )
 }
 
-resource "aws_subnet" "Private" {
+resource "aws_subnet" "private" {
   count = length(var.private_subnets_cidr)
   vpc_id = aws_vpc.main.id
   cidr_block = var.private_subnets_cidr[count.index]
@@ -53,7 +53,7 @@ resource "aws_subnet" "Private" {
   )
 }
 
-resource "aws_subnet" "Database" {
+resource "aws_subnet" "database" {
   count = length(var.database_subnets_cidr)
   vpc_id = aws_vpc.main.id
   cidr_block = var.database_subnets_cidr[count.index]
@@ -148,19 +148,19 @@ resource "aws_route" "database_route" {
 
 resource "aws_route_table_association" "public" {
   count = length(var.public_subnets_cidr)
-  subnet_id = element(aws_subnet.Public[*].id, count.index)
+  subnet_id = element(aws_subnet.public[*].id, count.index)
   route_table_id = aws_route_table.public.id
 }
 
 resource "aws_route_table_association" "private" {
   count = length(var.private_subnets_cidr)
-  subnet_id = element(aws_subnet.Private[*].id, count.index)
+  subnet_id = element(aws_subnet.private[*].id, count.index)
   route_table_id = aws_route_table.private.id
 }
 
 resource "aws_route_table_association" "database" {
   count = length(var.database_subnets_cidr)
-  subnet_id = element(aws_subnet.Database[*].id, count.index)
+  subnet_id = element(aws_subnet.database[*].id, count.index)
   route_table_id = aws_route_table.database.id
 }
 
