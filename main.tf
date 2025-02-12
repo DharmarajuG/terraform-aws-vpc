@@ -69,11 +69,11 @@ resource "aws_subnet" "database" {
 }
 
 resource "aws_db_subnet_group" "default" {
-  name = "${local.name}-dbsubnetgroup"
+  name = "${local.name}"
   subnet_ids = aws_subnet.database[*].id
 
   tags = {
-    Name = "${local.name}-dbsubnetgroup"
+    Name = "${local.name}"
   }
 }
 
@@ -89,7 +89,7 @@ resource "aws_nat_gateway" "main" {
     var.common_tags,
     var.nat_gateway_tags,
     {
-        Name = "${local.name}-natgateway"
+        Name = "${local.name}"
     }
   )
   depends_on = [ aws_internet_gateway.igw ]
